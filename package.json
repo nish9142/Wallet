@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "install-all": "npm install && npm --prefix frontend install",
-    "build": "npm run install-all && rimraf ./build && rimraf ./public/build && tsc && cd frontend && npm run build && mv build/* ../public/",
+    "build": "npm run install-all && rimraf ./build && rimraf ./public && mkdir ./public && tsc && cd frontend && npm run build && mv build/* ../public/",
     "start:dev": "npx nodemon",
     "start": "node build/index.js"
   },
