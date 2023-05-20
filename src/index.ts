@@ -11,8 +11,7 @@ mongoose
   .then(() => {
     const port = process.env.PORT || 8080;
       app.listen(port, () => {
-          console.log(__dirname)
-      console.log("Listening on port", port);
+      console.log("Listening on port 🚀 ", port);
     });
   })
   .catch((err) => console.error(err));
