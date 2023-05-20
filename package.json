@@ -7,7 +7,7 @@
     "install-all": "npm install && npm --prefix frontend install",
     "build": "npm run install-all && rimraf ./build && rimraf ./public/build && tsc && cd frontend && npm run build && mv build ../public ",
     "start:dev": "npx nodemon",
-    "start": "cd public && ls  && cd .. && node build/index.js"
+    "start": "node build/index.js"
   },
   "keywords": [],
   "author": "",
