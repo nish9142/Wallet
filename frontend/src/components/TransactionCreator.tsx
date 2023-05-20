@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { createTransaction } from "../api";
-import { Transaction, Wallet } from "../types";
+import { Transaction } from "../types";
 import {
   TextField,
   Button,

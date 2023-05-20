@@ -48,7 +48,7 @@ export const WalletComponent: React.FC = () => {
     } else {
       fetchWallet();
     }
-  }, []);
+  }, [fetchWallet,location.state]);
 
   return (
     <Container component="main" maxWidth="xs">

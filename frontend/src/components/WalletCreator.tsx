@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createWallet } from "../api";
 import { Wallet } from "../types";
 import { useNavigate } from "react-router-dom";
-import { Button, Container, TextField, Typography, Grid, makeStyles, Paper } from "@material-ui/core";
+import { Button, Container, TextField, Typography,makeStyles, Paper } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +49,7 @@ export const WalletCreator: React.FC = () => {
     const wal = localStorage.getItem("wallet");
     const walletId = wal && JSON.parse(wal)?.walletId;
     walletId && navigate(`/wallet/${walletId}`);
-  }, []);
+  }, [navigate]);
 
   return (
     <Container component="main" maxWidth="xs">

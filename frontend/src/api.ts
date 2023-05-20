@@ -31,7 +31,7 @@ export const getTransactions = async (
   format: string = "json",
 
 ): Promise<Transaction[]> => {
-    if (format == 'csv' && window) {
+    if (format === 'csv' && window) {
         window.open(`${baseUrl}/api/transactions/${walletId}?page=${page}&limit=${size}&sort=${sort}&order=${order}&format=${format}`, '_blank');
         return []
   }  

@@ -48,7 +48,7 @@ export const TransactionsTable: React.FC = () => {
 
   useEffect(() => {
     fetchTransactions();
-  }, [page, rowsPerPage, order, orderBy]);
+  }, [page, rowsPerPage, order, orderBy,fetchTransactions]);
 
   return (
     <div>
