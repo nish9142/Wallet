@@ -25,12 +25,6 @@ export const TransactionsTable: React.FC = () => {
   const [order, setOrder] = useState<"asc" | "desc">("asc");
   const [orderBy, setOrderBy] = useState<"date" | "amount">("date");
 
-  const fetchTransactions = async () => {
-    if (!id) return;
-    const data = await getTransactions(id, page + 1, rowsPerPage, orderBy, order);
-    setTransactions(data);
-  };
-
   const handleRequestSort = (property: "date" | "amount") => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -47,8 +41,13 @@ export const TransactionsTable: React.FC = () => {
   };
 
   useEffect(() => {
+    const fetchTransactions = async () => {
+      if (!id) return;
+      const data = await getTransactions(id, page + 1, rowsPerPage, orderBy, order);
+      setTransactions(data);
+    };
     fetchTransactions();
-  }, [page, rowsPerPage, order, orderBy,fetchTransactions]);
+  }, [page, rowsPerPage, order, orderBy]);
 
   return (
     <div>

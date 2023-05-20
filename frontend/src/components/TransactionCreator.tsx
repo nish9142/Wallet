@@ -52,7 +52,7 @@ export const TransactionCreator: React.FC<Props> = ({ fetchWallet }) => {
     if (walletId && amount && transactionType) {
       const newTransaction = await createTransaction(
         walletId,
-        TransactionType.DEBIT == transactionType ? amount * -1 : amount,
+        TransactionType.DEBIT === transactionType ? amount * -1 : amount,
         description
       );
       setTransaction(newTransaction);

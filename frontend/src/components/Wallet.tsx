@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Wallet } from "../types";
 import { TransactionCreator } from "./TransactionCreator";
 import { useLocation, useParams } from "react-router-dom";
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     margin: 30,
-    width:500,
+    width: 500,
     padding: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
@@ -35,12 +35,12 @@ export const WalletComponent: React.FC = () => {
   const location = useLocation();
   const { id: walletId } = useParams<{ id: string }>();
 
-  const fetchWallet = async () => {
+  const fetchWallet = useCallback(async () => {
     if (walletId) {
       const wal = await getWallet(walletId);
       setWallet(wal);
     }
-  };
+  }, [walletId]);
 
   useEffect(() => {
     if (location.state) {
@@ -48,7 +48,7 @@ export const WalletComponent: React.FC = () => {
     } else {
       fetchWallet();
     }
-  }, [fetchWallet,location.state]);
+  }, [fetchWallet, location.state]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -60,7 +60,7 @@ export const WalletComponent: React.FC = () => {
             <Typography variant="h6">Created wallet with ID: {wallet.walletId}</Typography>
             <Typography variant="body1">Name: {wallet.name}</Typography>
             <Typography variant="body1">Balance: {wallet.balance}</Typography>
-            <TransactionCreator fetchWallet={fetchWallet}  />
+            <TransactionCreator fetchWallet={fetchWallet} />
             <Button
               className={classes.linkButton}
               variant="contained"
