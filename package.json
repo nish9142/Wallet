@@ -4,9 +4,9 @@
   "description": "High level assignment",
   "main": "index.js",
   "scripts": {
-    "build": "npm install && rimraf ./build && rimraf ./public/build && tsc && cd frontend && npm run build && mv build ../public",
+    "install-all": "npm install && npm --prefix frontend install",
+    "build": "npm run install-all && rimraf ./build && rimraf ./public/build && tsc && cd frontend && npm run build && mv build ../public",
     "start:dev": "npx nodemon",
-    "preinstall": "cd frontend && npm install",
     "start": "npm run build && node build/index.js"
   },
   "keywords": [],
