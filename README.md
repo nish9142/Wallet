@@ -22,23 +22,11 @@ git clone  https://github.com/nish9142/Wallet.git
 ```bash
 cd Wallet
 ```
-3. Install the dependencies.
+3. Install the dependencies and build.
 ```bash
-npm install
+npm run build
 ```
-4. Navigate into frontend project directory.
-```bash
-cd ../frontend
-```
-5. Install the dependencies.
-```bash
-npm install
-```
-6. Navigate into the project directory.
-```bash
-cd ..
-```
-7. Start the development server.
+4. Start the development server.
 ```bash
 npm start
 ```
