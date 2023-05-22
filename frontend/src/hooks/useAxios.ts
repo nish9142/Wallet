@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { useSnackbar } from 'notistack';
 

@@ -41,7 +41,7 @@ export const WalletComponent: React.FC = () => {
       const wal = await getWallet(walletId);
       setWallet(wal);
     }
-  }, [walletId]);
+  }, [walletId,getWallet]);
 
   useEffect(() => {
     if (location.state) {
