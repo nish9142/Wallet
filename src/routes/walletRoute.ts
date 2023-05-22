@@ -31,6 +31,7 @@ router.post("/setup", allRequiredKeysPresent(["balance", "name"]), async (req, r
       .status(200)
       .json({ id: wallet.walletId, walletId:wallet.walletId, balance, transactionId: transactionId, name: wallet.name, date: wallet.date, message:"Wallet setup done" });
   } catch (err) {
+    console.error(err)
     res.status(500).json({ error: err.message });
   }
 });
@@ -45,6 +46,7 @@ router.post("/transact/:walletId", allRequiredKeysPresent(["amount", "descriptio
     const { balance, transactionId } = await createTransaction({ amount, description, walletId });
     res.status(200).json({ balance, transactionId, message: `Transaction done with balance ${balance}` });
   } catch (err) {
+    console.error(err)
     res.status(500).json({ error: err.message });
   }
 });
@@ -71,6 +73,7 @@ router.get("/transactions/:walletId", async (req, res) => {
     }
     res.json(transactions);
   } catch (err) {
+    console.error(err)
     res.status(500).json({ error: err.message });
   }
 });
@@ -83,6 +86,7 @@ router.get("/wallet/:id", async (req, res) => {
     if (!wallet) return res.status(404).json({ error: "Wallet not found" });
     res.status(200).json(wallet);
   } catch (err) {
+    console.error(err)
     res.status(500).json({ error: err.message });
   }
 });
@@ -117,6 +121,7 @@ const createTransaction = async ({ amount, description, walletId }: CreateTransa
     await session.commitTransaction();
     return { balance: updatedWallet.balance, transactionId: transaction._id };
   } catch (error) {
+    console.error(error)
     await session.abortTransaction();
     throw error;
   } finally {
