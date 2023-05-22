@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Wallet } from "../types";
 import { TransactionCreator } from "./TransactionCreator";
 import { useLocation, useParams } from "react-router-dom";
@@ -41,8 +41,8 @@ export const WalletComponent: React.FC = () => {
       const wal = await getWallet(walletId);
       setWallet(wal);
     }
-  }
-
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (location.state) {
       setWallet(location.state.wallet);
