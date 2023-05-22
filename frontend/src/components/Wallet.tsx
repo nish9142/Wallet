@@ -42,7 +42,7 @@ export const WalletComponent: React.FC = () => {
       setWallet(wal);
     }
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line 
   useEffect(() => {
     if (location.state) {
       setWallet(location.state.wallet);
