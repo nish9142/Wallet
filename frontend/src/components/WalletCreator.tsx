@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { createWallet } from "../api";
 import { Wallet } from "../types";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, TextField, Typography,makeStyles, Paper } from "@material-ui/core";
+import useApi from '../hooks/useApi';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,9 +31,9 @@ export const WalletCreator: React.FC = () => {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [balance, setBalance] = useState<number>(0);
+  const {createWallet} = useApi()
 
   const navigate = useNavigate();
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const newWallet = await createWallet(name, balance);

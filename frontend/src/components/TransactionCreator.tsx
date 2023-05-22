@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { createTransaction } from "../api";
 import { Transaction } from "../types";
 import {
   TextField,
@@ -13,6 +12,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { useParams } from "react-router-dom";
+import useApi from '../hooks/useApi';
 
 export enum TransactionType {
   CREDIT = "CREDIT",
@@ -46,17 +46,27 @@ export const TransactionCreator: React.FC<Props> = ({ fetchWallet }) => {
   const [description, setDescription] = useState("");
   const [transaction, setTransaction] = useState<Transaction | null>(null);
   const [transactionType, setTransactionType] = useState("CREDIT");
+  const { createTransaction } = useApi();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (walletId && amount && transactionType) {
-      const newTransaction = await createTransaction(
-        walletId,
-        TransactionType.DEBIT === transactionType ? amount * -1 : amount,
-        description
-      );
-      setTransaction(newTransaction);
-      fetchWallet();
+      try {
+        const newTransaction = await createTransaction(
+          walletId,
+          TransactionType.DEBIT === transactionType ? amount * -1 : amount,
+          description
+        );
+        setTransaction(newTransaction);
+        fetchWallet();
+        // Reset form fields
+        setAmount(0);
+        setDescription("");
+        setTransactionType("CREDIT");
+      } catch (error) {
+        console.error(error)
+      }
+      
     }
   };
 
@@ -89,7 +99,6 @@ export const TransactionCreator: React.FC<Props> = ({ fetchWallet }) => {
           label="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          required
           fullWidth
           className={classes.formControl}
         />

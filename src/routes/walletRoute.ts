@@ -29,7 +29,7 @@ router.post("/setup", allRequiredKeysPresent(["balance", "name"]), async (req, r
     });
     res
       .status(200)
-      .json({ id: wallet.walletId, walletId:wallet.walletId, balance, transactionId: transactionId, name: wallet.name, date: wallet.date });
+      .json({ id: wallet.walletId, walletId:wallet.walletId, balance, transactionId: transactionId, name: wallet.name, date: wallet.date, message:"Wallet setup done" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -43,7 +43,7 @@ router.post("/transact/:walletId", allRequiredKeysPresent(["amount", "descriptio
     if(isNaN(amount)) throw new Error("not a valid amount")
     const walletId = req.params.walletId;
     const { balance, transactionId } = await createTransaction({ amount, description, walletId });
-    res.status(200).json({ balance, transactionId });
+    res.status(200).json({ balance, transactionId, message: `Transaction done with balance ${balance}` });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

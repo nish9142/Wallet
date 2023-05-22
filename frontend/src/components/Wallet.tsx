@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Wallet } from "../types";
 import { TransactionCreator } from "./TransactionCreator";
 import { useLocation, useParams } from "react-router-dom";
-import { getWallet } from "../api";
 import { Button, Container, Paper, Typography, makeStyles } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
+import useApi from '../hooks/useApi';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +34,7 @@ export const WalletComponent: React.FC = () => {
   const [wallet, setWallet] = useState<Wallet | null>(null);
   const location = useLocation();
   const { id: walletId } = useParams<{ id: string }>();
+  const { getWallet } = useApi();
 
   const fetchWallet = useCallback(async () => {
     if (walletId) {

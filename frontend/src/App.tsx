@@ -5,13 +5,13 @@ import { TransactionsTable } from './components/TransactionsList';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<WalletCreator />} />
-        <Route path="/wallet/:id" element={<WalletComponent />} />
-        <Route path="/transactions/:id" element={<TransactionsTable />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<WalletCreator />} />
+          <Route path="/wallet/:id" element={<WalletComponent />} />
+          <Route path="/transactions/:id" element={<TransactionsTable />} />
+        </Routes>
+      </Router>
   );
 }
 

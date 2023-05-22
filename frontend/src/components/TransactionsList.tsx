@@ -13,9 +13,9 @@ import {
   Typography,
   Box,
 } from "@material-ui/core";
-import { getTransactions } from "../api";
 import { Transaction } from "../types";
 import { getDate } from "../helpers";
+import useApi from '../hooks/useApi';
 
 export const TransactionsTable: React.FC = () => {
   const { id } = useParams<{ id: string }>() as any;
@@ -24,6 +24,7 @@ export const TransactionsTable: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [order, setOrder] = useState<"asc" | "desc">("asc");
   const [orderBy, setOrderBy] = useState<"date" | "amount">("date");
+  const { getTransactions } = useApi();
 
   const handleRequestSort = (property: "date" | "amount") => {
     const isAsc = orderBy === property && order === "asc";
