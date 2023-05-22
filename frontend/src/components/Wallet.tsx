@@ -36,12 +36,12 @@ export const WalletComponent: React.FC = () => {
   const { id: walletId } = useParams<{ id: string }>();
   const { getWallet } = useApi();
 
-  const fetchWallet = useCallback(async () => {
+  const fetchWallet = async () => {
     if (walletId) {
       const wal = await getWallet(walletId);
       setWallet(wal);
     }
-  }, [walletId,getWallet]);
+  }
 
   useEffect(() => {
     if (location.state) {
@@ -49,7 +49,7 @@ export const WalletComponent: React.FC = () => {
     } else {
       fetchWallet();
     }
-  }, [fetchWallet, location.state]);
+  }, [location.state]);
 
   return (
     <Container component="main" maxWidth="xs">
